@@ -254,22 +254,40 @@ class Text(collections.Sequence, BaseText):
 
 
 class Title(Text):
-    parsers = []#[CompoundParser()]
+    parsers = [CompoundParser()]
 
     def _repr_html_(self):
         return '<h1 class="cde-title">' + self.text + '</h1>'
 
 
 class Heading(Text):
-    parsers = []#[CompoundHeadingParser(), ChemicalLabelParser()]
+    parsers = [CompoundHeadingParser(), ChemicalLabelParser()]
 
     def _repr_html_(self):
         return '<h2 class="cde-title">' + self.text + '</h2>'
 
 
 class Paragraph(Text):
-    parsers = [CompoundParser(), ChemicalLabelParser(), CtParser(), NtParser(), ContextParser()]
-    #parsers = [InternalCompoundLabelParser(), CompoundParser(), ChemicalLabelParser(), NmrParser(), IrParser(), UvvisParser(), MpParser(), NtParser(), CtParser(), TgParser(), ContextParser()]
+    # parsers = [
+    #     CompoundParser(),
+    #     ChemicalLabelParser(),
+    #     CtParser(),
+    #     NtParser(),
+    #     ContextParser()
+    # ]
+    parsers = [
+        # InternalCompoundLabelParser(),
+        CompoundParser(),
+        ChemicalLabelParser(),
+        NmrParser(),
+        IrParser(),
+        UvvisParser(),
+        MpParser(),
+        NtParser(),
+        CtParser(),
+        TgParser(),
+        ContextParser()
+    ]
 
     def _repr_html_(self):
         return '<p class="cde-paragraph">' + self.text + '</p>'
@@ -305,10 +323,14 @@ class Citation(Text):
 
 
 class Caption(Text):
-    parsers = [CompoundParser(), ChemicalLabelParser(), CaptionContextParser()]
+    parsers = [
+        CompoundParser(),
+        ChemicalLabelParser(),
+        CaptionContextParser()
+    ]
 
     def _repr_html_(self):
-        return '<caption class="cde-caption">' + self.text + '</caption>'
+        return f'<caption class="cde-caption">{self.text}</caption>'
 
 
 class Sentence(BaseText):

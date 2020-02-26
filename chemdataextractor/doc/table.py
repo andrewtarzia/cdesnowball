@@ -15,14 +15,40 @@ import logging
 from collections import defaultdict
 
 from ..model import Compound, ModelList
-from ..parse.table import CompoundHeadingParser, CompoundCellParser, UvvisAbsHeadingParser, UvvisAbsCellParser, \
-    QuantumYieldHeadingParser, QuantumYieldCellParser, UvvisEmiHeadingParser, UvvisEmiCellParser, ExtinctionCellParser, \
-    ExtinctionHeadingParser, FluorescenceLifetimeHeadingParser, FluorescenceLifetimeCellParser, \
-    ElectrochemicalPotentialHeadingParser, ElectrochemicalPotentialCellParser, IrHeadingParser, IrCellParser, \
-    SolventCellParser, SolventHeadingParser, SolventInHeadingParser, UvvisAbsEmiQuantumYieldHeadingParser, \
-    UvvisAbsEmiQuantumYieldCellParser, MeltingPointHeadingParser, MeltingPointCellParser, GlassTransitionHeadingParser, GlassTransitionCellParser, TempInHeadingParser, \
-    UvvisAbsDisallowedHeadingParser, UvvisEmiQuantumYieldHeadingParser, UvvisEmiQuantumYieldCellParser, NeelTemperatureCellParser, NeelTemperatureHeadingParser, \
-    CurieTemperatureHeadingParser, CurieTemperatureCellParser
+from ..parse.table import (
+    CompoundHeadingParser,
+    CompoundCellParser,
+    UvvisAbsHeadingParser,
+    UvvisAbsCellParser,
+    QuantumYieldHeadingParser,
+    QuantumYieldCellParser,
+    UvvisEmiHeadingParser,
+    UvvisEmiCellParser, ExtinctionCellParser,
+    ExtinctionHeadingParser,
+    FluorescenceLifetimeHeadingParser,
+    FluorescenceLifetimeCellParser,
+    ElectrochemicalPotentialHeadingParser,
+    ElectrochemicalPotentialCellParser,
+    IrHeadingParser,
+    IrCellParser,
+    SolventCellParser,
+    SolventHeadingParser,
+    SolventInHeadingParser,
+    UvvisAbsEmiQuantumYieldHeadingParser,
+    UvvisAbsEmiQuantumYieldCellParser,
+    MeltingPointHeadingParser,
+    MeltingPointCellParser,
+    GlassTransitionHeadingParser,
+    GlassTransitionCellParser,
+    TempInHeadingParser,
+    UvvisAbsDisallowedHeadingParser,
+    UvvisEmiQuantumYieldHeadingParser,
+    UvvisEmiQuantumYieldCellParser,
+    NeelTemperatureCellParser,
+    NeelTemperatureHeadingParser,
+    CurieTemperatureHeadingParser,
+    CurieTemperatureCellParser
+)
 # TODO: Sort out the above import... import module instead
 from ..nlp.tag import NoneTagger
 from ..nlp.tokenize import FineWordTokenizer
@@ -39,21 +65,40 @@ class Table(CaptionedElement):
     #: Table cell parsers
     parsers = [
         (CompoundHeadingParser(), CompoundCellParser()),
-        #(UvvisAbsEmiQuantumYieldHeadingParser(), UvvisAbsEmiQuantumYieldCellParser()),
-        #(UvvisEmiQuantumYieldHeadingParser(), UvvisEmiQuantumYieldCellParser()),
-        #(UvvisEmiHeadingParser(), UvvisEmiCellParser()),
-        #(UvvisAbsHeadingParser(), UvvisAbsCellParser(), UvvisAbsDisallowedHeadingParser()),
-        #(IrHeadingParser(), IrCellParser()),
-        #(ExtinctionHeadingParser(), ExtinctionCellParser()),
-        #(QuantumYieldHeadingParser(), QuantumYieldCellParser()),
-        #(FluorescenceLifetimeHeadingParser(), FluorescenceLifetimeCellParser()),
-        #(ElectrochemicalPotentialHeadingParser(), ElectrochemicalPotentialCellParser()),
-        #(MeltingPointHeadingParser(), MeltingPointCellParser()),
+        (
+            UvvisAbsEmiQuantumYieldHeadingParser(),
+            UvvisAbsEmiQuantumYieldCellParser()
+        ),
+        (
+            UvvisEmiQuantumYieldHeadingParser(),
+            UvvisEmiQuantumYieldCellParser()
+        ),
+        (UvvisEmiHeadingParser(), UvvisEmiCellParser()),
+        (
+            UvvisAbsHeadingParser(),
+            UvvisAbsCellParser(),
+            UvvisAbsDisallowedHeadingParser()
+        ),
+        (IrHeadingParser(), IrCellParser()),
+        (ExtinctionHeadingParser(), ExtinctionCellParser()),
+        (QuantumYieldHeadingParser(), QuantumYieldCellParser()),
+        (
+            FluorescenceLifetimeHeadingParser(),
+            FluorescenceLifetimeCellParser()
+        ),
+        (
+            ElectrochemicalPotentialHeadingParser(),
+            ElectrochemicalPotentialCellParser()
+        ),
+        (MeltingPointHeadingParser(), MeltingPointCellParser()),
         (NeelTemperatureHeadingParser(), NeelTemperatureCellParser()),
-        (CurieTemperatureHeadingParser(), CurieTemperatureCellParser()),
-        #(GlassTransitionHeadingParser(), GlassTransitionCellParser()),
-        #(SolventHeadingParser(), SolventCellParser()),
-        #(SolventInHeadingParser(),),
+        (
+            CurieTemperatureHeadingParser(),
+            CurieTemperatureCellParser()
+        ),
+        (GlassTransitionHeadingParser(), GlassTransitionCellParser()),
+        (SolventHeadingParser(), SolventCellParser()),
+        (SolventInHeadingParser(),),
         (TempInHeadingParser(),)
     ]
 
